@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Road Network Optimization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            width: 45%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none; /* Hidden initially */
+        }
+
+        .image-container img.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Road Network Optimization</h1>
+    <p></p>
+    <button onclick="fetchNetwork()">Generate Network</button>
+
+    <div class="image-container">
+        
+        <div>
+            <h3>Optimized Road Network</h3>
+            <img id="optimizedImage" src="" alt="Optimized Road Network">
+        </div>
+    </div>
+
+    <script>
+        function fetchNetwork() {
+            fetch('/optimization/generate-road-network/')
+                .then(response => response.json())
+                .then(data => {
+                    //document.getElementById('originalImage').src = "data:image/png;base64," + data.original_image;
+                    document.getElementById('optimizedImage').src = "data:image/png;base64," + data.optimized_image;
+                    
+                    // Show images
+                    //document.getElementById('originalImage').classList.add("visible");
+                    document.getElementById('optimizedImage').classList.add("visible");
+                })
+                .catch(error => console.error("Error fetching network:", error));
+        }
+    </script>
+</body>
+</html>
