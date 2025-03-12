@@ -9,7 +9,7 @@ from shapely.geometry import Polygon, Point
 from django.http import JsonResponse
 import matplotlib.pyplot as plt
 import matplotlib
-matplotlib.use("Agg")  # Use a non-GUI backend
+matplotlib.use("Agg")  
 
 import matplotlib.pyplot as plt
 
@@ -118,7 +118,7 @@ def generate_road_network(request):
 
         obstacle_list = building_data.geometry.dropna().tolist() if not building_data.empty else []
     except Exception as e:
-        print(f"❌ Error fetching building data: {e}")
+        print(f"Error fetching building data: {e}")
         obstacle_list = []
 
     # Generate original network image
